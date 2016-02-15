@@ -2,12 +2,12 @@ $(function()
 {
 
 
-  MyMatriz = [[0,"*",0,"-","8","19"],
+  MyMatriz = [[0,"*",0,"-","8",19],
                 ["-","","+","","-",""],
-                [0,"+",0,"*",0,"8"],
+                [0,"+",0,"*",0,8],
                 ["+","","-","","+",""],
-                [0,"+","4","-",0,"2"],
-                ["12","","0","","9",""]];
+                [0,"+","4","-",0,2],
+                [12,"","0","",9,""]];
                 
                 
                 /* 0 x 0 - 8 = 19
@@ -25,11 +25,6 @@ $(function()
        // DibujaJuego();
         //validaResultados();
 			});
-
-			$("#PalabraC").keyup(function(){
-				ContarConsonantes();
-			});
-
 	  
 function DibujaJuego (){
 	
@@ -62,19 +57,43 @@ function DibujaJuego (){
 
 function validaResultados(){
  var cont=0;
- var filas=[], Resultados=[], Valores=[];
- /*
+ 
+ filas=[];
+ Resultados=[];
+ Valores=[];
  //Valida filas
   for(var i=0;i < MyMatriz.length-1;i+=2){ 
     filas[cont] = MyMatriz[i];
-    Resultados[cont] = filas[cont].pop(); 
-    Valores[cont] = filas[cont].join(' ');
+    //Resultados[cont] = filas[cont].pop(); 
+    //Valores[cont] = filas[cont].join(' ');
     cont++;
     
   }
-  */
+  for (var i = 0; i < filas.length; i++) {
+   // Resultados[i] = filas[i].pop();
+    for (var j = 0; j < filas[i].length-1; j++) {
+      Valores.push(filas[i][j]);
+    };
+  
+  };
+   MisValoresF1=[];
+   for (var i = 0; i < 5; i++) {
+     MisValoresF1.push(Valores[i]);
+   };
+   MisValoresF2=[];
+   for (var i = 5; i < 10; i++) {
+     MisValoresF2.push(Valores[i]);
+   };
+   MisValoresF3=[];
+   for (var i = 10; i < 15; i++) {
+     MisValoresF3.push(Valores[i]);
+   };
+
+ValoresFilas=[];
+ValoresFilas.push(MisValoresF1.join(' '),MisValoresF2.join(' '),MisValoresF3.join(' '));
+  
 //Valida Columnas
-var Columnas=[], cont=0, ResultadosColumnas=[];
+var Columnas=[], cont=0;
 for(var i=0;i < MyMatriz.length;i++){
   for(var j=0;j< MyMatriz[i].length;j++){
    Columnas.push(MyMatriz[j][i]);
@@ -93,18 +112,29 @@ var Columna3=[];
 for (var i = 24; i < 30; i++) {
   Columna3.push(Columnas[i]);
 };
-
+/*
 ResultadosColumnas.push(Columna1.pop());
 ResultadosColumnas.push(Columna2.pop());
 ResultadosColumnas.push(Columna3.pop());
-
-var ValoresColumnas = [];
+*/
+  ValoresColumnas = [];
   ValoresColumnas.push(Columna1.join(''),Columna2.join(''),Columna3.join(''));
 //----------------------------Validaciones---------------------------------------------------
 
-//if(eval(Valores[0])===48 && eval(Valores[1])===162 && eval(Valores[2])===2 && eval(ValoresColumnas[0])===3 && eval(ValoresColumnas[1])===12 && eval(ValoresColumnas[2])===5){
-if(48===48 && 162===162 && 2===2 && 3===3 && 12===12 && 5===5){
+if(eval(ValoresFilas[0])===MyMatriz[0][5] && eval(ValoresFilas[1])===MyMatriz[2][5] && eval(ValoresFilas[2])===MyMatriz[4][5] && eval(ValoresColumnas[0])===MyMatriz[5][0] && eval(ValoresColumnas[1])===MyMatriz[5][2] && eval(ValoresColumnas[2])===MyMatriz[5][4]){
 
+  
+/*
+Matriz de prueba  restFilas = 48, 90, 2
+                  restColumnas = 3, 12, 5
+
+"8" "*" "7" "-" "8" 48
+"-" ""  "+" ""  "-" ""
+"9" "+" "9" "*" "9" 90
+"+" ""  "-" ""  "+" ""
+"4" "+" "4" "-" "6" 2
+ 3  ""  12 ""  5 ""
+*/
   $("#Mensajes").html("<p style='color:green'> !Ganoooo¡ </p>");
   DibujaJuego();
 
@@ -118,7 +148,6 @@ if(48===48 && 162===162 && 2===2 && 3===3 && 12===12 && 5===5){
 
 function IngresaValores(){
 
-  console.log($("#id_40").val());
   
   $("#id_00").val().toString().length > 0 && !isNaN($("#id_00").val()) ? MyMatriz[0][0] = $("#id_00").val() : MyMatriz[0][0]=0;
   $("#id_02").val().toString().length > 0 && !isNaN($("#id_02").val()) ? MyMatriz[0][2] = $("#id_02").val() : MyMatriz[0][2]=0;
@@ -127,21 +156,29 @@ function IngresaValores(){
   $("#id_24").val().toString().length > 0 && !isNaN($("#id_24").val()) ? MyMatriz[2][4] = $("#id_24").val() : MyMatriz[2][4]=0;
   $("#id_40").val().toString().length > 0 && !isNaN($("#id_40").val()) ? MyMatriz[4][0] = $("#id_40").val() : MyMatriz[4][0]=0;
   $("#id_44").val().toString().length > 0 && !isNaN($("#id_44").val()) ? MyMatriz[4][4] = $("#id_44").val() : MyMatriz[4][4]=0;
- /*
-  MyMatriz[0][2] = $("#id_02").val();
-  MyMatriz[2][0] = $("#id_20").val();
-  MyMatriz[2][2] = $("#id_22").val();
-  MyMatriz[4][0] = $("#id_40").val();
-  MyMatriz[4][4] = $("#id_44").val();
-*/
+ 
+ validaResultados();
 }
 
 
 $("#Valida").click(function(event)
   {
-    IngresaValores();
-    validaResultados();
+    NoCamposVacios();
+    //IngresaValores();
+    //validaResultados();
   });
 
+function NoCamposVacios(){
+  $("#id_00").val().toString().length == 0 && !isNaN($("#id_00").val()) ? $("#Mensajes").html("<p style='color:red'> Debe llenar todos los campos </p>") :
+  $("#id_02").val().toString().length == 0 && !isNaN($("#id_02").val()) ? $("#Mensajes").html("<p style='color:red'> Debe llenar todos los campos </p>") :
+  $("#id_20").val().toString().length == 0 && !isNaN($("#id_20").val()) ? $("#Mensajes").html("<p style='color:red'> Debe llenar todos los campos </p>") :
+  $("#id_22").val().toString().length == 0 && !isNaN($("#id_22").val()) ? $("#Mensajes").html("<p style='color:red'> Debe llenar todos los campos </p>") :
+  $("#id_24").val().toString().length == 0 && !isNaN($("#id_24").val()) ? $("#Mensajes").html("<p style='color:red'> Debe llenar todos los campos </p>") :
+  $("#id_40").val().toString().length == 0 && !isNaN($("#id_40").val()) ? $("#Mensajes").html("<p style='color:red'> Debe llenar todos los campos </p>") :
+  $("#id_44").val().toString().length == 0 && !isNaN($("#id_44").val()) ? $("#Mensajes").html("<p style='color:red'> Debe llenar todos los campos </p>") :
+  IngresaValores();
+  
+  
+}
 
 });
