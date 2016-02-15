@@ -100,23 +100,19 @@ for(var i=0;i < MyMatriz.length;i++){
   }
 }
 var Columna1=[];
-for (var i = 0; i < 6; i++) {
+for (var i = 0; i < 5; i++) {
   Columna1.push(Columnas[i]);
 };
 var Columna2=[];
-for (var i = 12; i < 18; i++) {
+for (var i = 12; i < 17; i++) {
   Columna2.push(Columnas[i]);
 };
 
 var Columna3=[];
-for (var i = 24; i < 30; i++) {
+for (var i = 24; i < 29; i++) {
   Columna3.push(Columnas[i]);
 };
-/*
-ResultadosColumnas.push(Columna1.pop());
-ResultadosColumnas.push(Columna2.pop());
-ResultadosColumnas.push(Columna3.pop());
-*/
+
   ValoresColumnas = [];
   ValoresColumnas.push(Columna1.join(''),Columna2.join(''),Columna3.join(''));
 //----------------------------Validaciones---------------------------------------------------
@@ -135,7 +131,7 @@ Matriz de prueba  restFilas = 48, 90, 2
 "4" "+" "4" "-" "6" 2
  3  ""  12 ""  5 ""
 */
-  $("#Mensajes").html("<p style='color:green'> !Ganoooo¡ </p>");
+  $("#Mensajes").html("<p style='color:green'> !Ganóóóóó¡ </p>");
   DibujaJuego();
 
 }else{
