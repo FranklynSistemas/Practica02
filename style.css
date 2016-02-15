@@ -1,0 +1,13 @@
+body{
+  background-color: gainsboro;
+}
+
+#Juego {
+	height: 30%;
+    width: 30%;
+}
+
+#Mensajes {
+	height: 30%;
+    width: 30%;
+}
