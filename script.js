@@ -117,7 +117,7 @@ for (var i = 24; i < 29; i++) {
   ValoresColumnas.push(Columna1.join(''),Columna2.join(''),Columna3.join(''));
 //----------------------------Validaciones---------------------------------------------------
 
-if(eval(ValoresFilas[0])===MyMatriz[0][5] && eval(ValoresFilas[1])===MyMatriz[2][5] && eval(ValoresFilas[2])===MyMatriz[4][5] && eval(ValoresColumnas[0])===MyMatriz[5][0] && eval(ValoresColumnas[1])===parseInt(MyMatriz[5][2]) && eval(ValoresColumnas[2])===MyMatriz[5][4]){
+if(eval(ValoresFilas[0])===MyMatriz[0][5] && eval(ValoresFilas[1])===MyMatriz[2][5] && eval(ValoresFilas[2])===MyMatriz[4][5] && eval(ValoresColumnas[0])===MyMatriz[5][0] && eval(ValoresColumnas[1]) === parseInt(MyMatriz[5][2]) && eval(ValoresColumnas[2])===MyMatriz[5][4]){
 
   
 /*
